@@ -46,7 +46,6 @@ web_modules/
 
 # TypeScript cache
 *.tsbuildinfo
-.kiro/
 
 # Optional npm cache directory
 .npm
@@ -72,9 +71,15 @@ web_modules/
 !.env.example
 
 # Terraform — arquivos sensíveis e de estado
+# (.terraform/ e *.tfstate adicionados: exigidos pela prova; .terraform.lock.hcl é versionado)
 *.tfvars
+!*.tfvars.example
+.terraform/
+*.tfstate
+*.tfstate.*
 terraform.tfstate
 terraform.tfstate.backup
+tfplan
 
 # Credenciais e chaves privadas
 *.pem
