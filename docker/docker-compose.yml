@@ -18,10 +18,11 @@ services:
     image: postgres:15
     restart: unless-stopped
 
-    # Carrega as variáveis de ambiente a partir do .env.example
-    # TODO: Em produção, use o arquivo .env (sem valores de exemplo)
+    # Carrega as variáveis do .env real (copiado de .env.example e fora do Git).
+    # Corrigido: antes lia o .env.example, ignorando as senhas do aluno.
+    # TODO: Em produção, use um gerenciador de segredos (ex.: AWS Secrets Manager)
     env_file:
-      - .env.example
+      - .env
 
     # Healthcheck: aguarda o PostgreSQL aceitar conexões antes de liberar o Moodle
     healthcheck:
@@ -51,16 +52,22 @@ services:
       db:
         condition: service_healthy
 
-    # TODO: Altere a porta do host (8080) caso ela já esteja em uso na sua máquina
+    # Porta do host configurável via MOODLE_HOST_PORT (padrão 8080). Em máquinas onde o
+    # Windows reserva a 8080, defina MOODLE_HOST_PORT e MOODLE_WWWROOT no .env (devem coincidir).
+    # TODO: Em produção, publicar a porta 80 atrás de um proxy/ALB com HTTPS
     ports:
-      - "8080:80"
+      - "${MOODLE_HOST_PORT:-8080}:80"
 
-    # Carrega as variáveis de ambiente a partir do .env.example
+    # Carrega as variáveis do .env real (mesma fonte do serviço db)
     env_file:
-      - .env.example
+      - .env
 
-    # Passa as variáveis de conexão ao banco de dados para o contêiner Moodle
+    # Passa as variáveis de conexão ao banco e de instalação ao contêiner Moodle.
+    # O entrypoint (entrypoint.sh) usa estas variáveis para instalar o Moodle
+    # automaticamente na primeira execução (gera o config.php).
     environment:
+      - MOODLE_WWWROOT=${MOODLE_WWWROOT}
+      - MOODLE_EMAIL=${MOODLE_EMAIL}
       - MOODLE_DATABASE_TYPE=pgsql
       - MOODLE_DATABASE_HOST=${MOODLE_DATABASE_HOST}
       - MOODLE_DATABASE_PORT_NUMBER=${MOODLE_DATABASE_PORT_NUMBER}
@@ -72,9 +79,11 @@ services:
       - MOODLE_SITE_NAME=${MOODLE_SITE_NAME}
 
     volumes:
+      # Corrigido: os nomes estavam trocados (moodle_data montava o código).
+      # moodle_www = código (DocumentRoot); moodle_data = dados (moodledata).
       # TODO: Ajuste os caminhos de montagem dos volumes caso necessário
-      - moodle_data:/var/www/html
-      - moodle_www:/var/moodledata
+      - moodle_www:/var/www/html
+      - moodle_data:/var/moodledata
 
 # =============================================================================
 # Volumes nomeados
