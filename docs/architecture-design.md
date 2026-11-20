@@ -167,13 +167,11 @@ Estimativa mensal em `us-east-1` considerando uso contínuo (730 h/mês), preço
 | EC2 | `t3.micro`, On-Demand, Linux, 730 h × US$ 0,0104 | 7,59 | [AWS — EC2 T3](https://aws.amazon.com/ec2/instance-types/t3/) |
 | IPv4 público da EC2 | 730 h × US$ 0,005 | 3,65 | [AWS — cobrança de IPv4 público](https://aws.amazon.com/blogs/aws/new-aws-public-ipv4-address-charge-public-ip-insights/) |
 | Armazenamento EBS da EC2 | 8 GB `gp3` (volume raiz padrão do AL2023) × US$ 0,08 | 0,64 | [AWS — EBS](https://aws.amazon.com/ebs/pricing/) |
-| RDS PostgreSQL | `db.t3.micro`, Single-AZ, 730 h × ~US$ 0,018 | ~13,14 *(estimativa)* | [AWS — RDS PostgreSQL](https://aws.amazon.com/rds/postgresql/pricing/) |
-| Armazenamento do RDS | 20 GB `gp2` × ~US$ 0,115 | ~2,30 *(estimativa)* | [AWS — RDS PostgreSQL](https://aws.amazon.com/rds/postgresql/pricing/) |
+| RDS PostgreSQL | `db.t3.micro`, Single-AZ, 730 h × US$ 0,018 | 13,14 | [AWS — RDS PostgreSQL](https://aws.amazon.com/rds/postgresql/pricing/); conferido em [Bytebase](https://www.bytebase.com/dbcost/rds/instance/db.t3.micro/) e na tabela pública de preços agregada (instances.usage.ai) |
+| Armazenamento do RDS | 20 GB `gp2` × US$ 0,115 (faixa: até US$ 0,138/GB) | 2,30 (até 2,76) | [AWS — RDS PostgreSQL](https://aws.amazon.com/rds/postgresql/pricing/) |
 | Transferência de dados | ~1 GB/mês de saída (dentro da franquia mensal de saída para a internet) | ~0,00 | [AWS — preços de EC2](https://aws.amazon.com/ec2/pricing/on-demand/) |
-| **Total estimado** | | **≈ 27,3** | |
+| **Total estimado** | | **≈ 27,3** (até ≈ 27,8) | |
 
-Observações: os valores do RDS (instância e armazenamento) são estimativas e devem ser confirmados na calculadora; o Learner Lab consome créditos, não dinheiro. Não há custo de NAT Gateway nem de balanceador nesta arquitetura, e esse é um dos motivos de ela ser barata.
+**Metodologia:** a estimativa usa os **valores unitários públicos de preço** da AWS em `us-east-1` (preços On-Demand), conforme permitido pelo enunciado ("valores conhecidos do Learner Lab"); não foi gerada uma estimativa na AWS Pricing Calculator. EC2, IPv4 público e EBS foram confirmados em páginas oficiais da AWS; o preço por hora do RDS `db.t3.micro` foi confirmado por mais de uma fonte independente. O único valor com incerteza é o armazenamento `gp2` do RDS (US$ 0,115/GB-mês é o valor de referência de longa data; uma fonte de fórum cita US$ 0,138), uma diferença de cerca de **US$ 0,46/mês** que não altera a conclusão. Antes de qualquer uso real, o valor exato deve ser conferido na página de preços do RDS ou na [AWS Pricing Calculator](https://calculator.aws/).
 
-Link da estimativa gerada na AWS Pricing Calculator: [PREENCHER: colar aqui o link compartilhável gerado em https://calculator.aws/]
-
-Referência: [AWS Pricing Calculator](https://calculator.aws/).
+O Learner Lab consome **créditos do laboratório**, não dinheiro. Não há custo de NAT Gateway nem de balanceador nesta arquitetura, e esse é um dos motivos de ela ser barata.
