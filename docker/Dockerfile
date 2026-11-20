@@ -14,6 +14,9 @@ FROM php:8.1-apache
 # Instala as dependências de sistema necessárias para as extensões PHP
 # e ferramentas utilitárias do ambiente de produção
 # -----------------------------------------------------------------------------
+# DL3008 ignorado: as versões dos pacotes apt flutuam com o release Debian da imagem
+# base php:8.1-apache; fixá-las quebraria o build a cada atualização da base.
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # pkg-config — necessário para que o configure do PHP encontre as bibliotecas
     pkg-config \
@@ -44,9 +47,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Configura e instala a extensão gd com suporte a JPEG
 # (precisa de configuração prévia ao install para habilitar libjpeg)
 # -----------------------------------------------------------------------------
-RUN docker-php-ext-configure gd --with-jpeg
-
-# -----------------------------------------------------------------------------
+# (unificado com o install abaixo para evitar RUNs consecutivos — hadolint DL3059)
+#
 # Instala as extensões PHP obrigatórias para o Moodle 4.x
 #
 # Extensões NÃO instaladas aqui pois já vêm embutidas no PHP:
@@ -56,7 +58,8 @@ RUN docker-php-ext-configure gd --with-jpeg
 #   - zlib    (built-in)
 #   - json    (built-in no PHP 8+)
 # -----------------------------------------------------------------------------
-RUN docker-php-ext-install \
+RUN docker-php-ext-configure gd --with-jpeg \
+    && docker-php-ext-install \
     # Codificação multibyte de strings (obrigatório para i18n no Moodle)
     mbstring \
     # Cliente HTTP (utilizado para integração de plugins e notificações)
@@ -67,8 +70,14 @@ RUN docker-php-ext-install \
     simplexml \
     # Internacionalização e formatação de datas/números por locale
     intl \
-    # Driver PDO para PostgreSQL (conexão com o banco de dados)
+    # Driver PDO para PostgreSQL
     pdo_pgsql \
+    # Driver NATIVO do PostgreSQL (pg_connect) — o Moodle usa esta extensão, não o PDO.
+    # Corrigido: estava ausente e impedia a conexão do Moodle com o banco.
+    pgsql \
+    # SOAP (web services) e EXIF (metadados de imagens) — recomendadas pelo Moodle
+    soap \
+    exif \
     # Processamento de imagens (thumbnails, avatares de usuários)
     gd \
     # Cache de opcodes PHP (melhora performance de produção)
@@ -126,22 +135,16 @@ RUN curl -fsSL \
 # Cria o diretório moodledata fora do DocumentRoot (exigido pelo Moodle)
 # e ajusta permissões para o usuário do Apache
 # -----------------------------------------------------------------------------
+#
+# Também cria o symlink /var/www/moodledata -> /var/moodledata (caminho padrão
+# esperado pelo instalador) e habilita o módulo Apache rewrite (URLs limpas).
+# Unificado em um único RUN para evitar RUNs consecutivos (hadolint DL3059).
+# -----------------------------------------------------------------------------
 RUN mkdir -p /var/moodledata \
     && chown -R www-data:www-data /var/moodledata \
-    && chmod 0770 /var/moodledata
-
-# -----------------------------------------------------------------------------
-# Cria symlink /var/www/moodledata -> /var/moodledata para que o instalador
-# web do Moodle encontre o diretório no caminho padrão sem precisar de
-# permissões de escrita em /var/www
-# -----------------------------------------------------------------------------
-RUN ln -s /var/moodledata /var/www/moodledata
-
-# -----------------------------------------------------------------------------
-# Habilita os módulos Apache necessários para o Moodle
-# (rewrite é obrigatório para URLs limpas)
-# -----------------------------------------------------------------------------
-RUN a2enmod rewrite
+    && chmod 0770 /var/moodledata \
+    && ln -s /var/moodledata /var/www/moodledata \
+    && a2enmod rewrite
 
 # -----------------------------------------------------------------------------
 # Copia o arquivo de configuração do VirtualHost customizado para o Apache
@@ -150,5 +153,15 @@ RUN a2enmod rewrite
 # -----------------------------------------------------------------------------
 # COPY apache-moodle.conf /etc/apache2/sites-available/000-default.conf
 
+# -----------------------------------------------------------------------------
+# Entrypoint: instala o Moodle via CLI na primeira execução (gera o config.php)
+# e depois inicia o Apache em primeiro plano.
+# -----------------------------------------------------------------------------
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 # Porta exposta pelo contêiner (mapeada para 8080 no host via docker-compose.yml)
 EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["apache2-foreground"]

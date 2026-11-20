@@ -1,0 +1,403 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Declarar variáveis de rede: `public_subnet_id` e `sg_app_id` (tipo `string`, sem default, `description` não vazia)": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046420668
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046430842
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046545485
+      }
+    ],
+    "1.2 Declarar variáveis de instância: `instance_type` (default `\"t3.micro\"`, validation rejeita string vazia) e `instance_name` (default `\"moodle-ec2\"`, validation rejeita string vazia)": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046420791
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046436430
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046549821
+      }
+    ],
+    "1.3 Declarar variáveis do RDS sem sensitive: `db_host`, `db_name`, `db_user` (tipo `string`, sem default); e `db_password` (`sensitive = true`, sem default, validation comprimento ≥ 8)": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046423737
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046436616
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046550321
+      }
+    ],
+    "1.4 Declarar variável `db_port` (tipo `number`, default `5432`, validation 1 ≤ porta ≤ 65535)": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424028
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046436723
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046550843
+      }
+    ],
+    "1.5 Adicionar ao menos um comentário `# TODO: (produção)` em `variables.tf`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424086
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046555157
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046605081
+      }
+    ],
+    "1.6 Declarar variáveis do Moodle e do repositório: `moodle_admin_user` (default `\"admin\"`), `moodle_admin_password` (`sensitive = true`, sem default, validation: ≥8 chars com maiúscula + minúscula + dígito + símbolo), `moodle_admin_email` (sem default), `moodle_site_name` (default `\"Moodle\"`), `repo_url` (sem default) e `repo_branch` (default `\"main\"`)": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424139
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046559686
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046610029
+      }
+    ],
+    "2.1 Declarar `data \"aws_ami\" \"al2023\"` com `most_recent = true`, `owners = [\"amazon\"]` e filtros `al2023-ami-2023.*-x86_64` / `hvm`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424198
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046614729
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046975254
+      }
+    ],
+    "2.2 Declarar bloco `locals { user_data_vars = { db_host, db_port, db_name, db_user, db_password, moodle_admin_user, moodle_admin_password, moodle_admin_email, moodle_site_name, repo_url, repo_branch } }` referenciando as variáveis de `variables.tf`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424257
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046619162
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046975920
+      }
+    ],
+    "2.3 Declarar exatamente um `resource \"aws_instance\" \"moodle\"` com `ami`, `instance_type`, `subnet_id`, `vpc_security_group_ids`, `iam_instance_profile = \"LabInstanceProfile\"` (string literal), `user_data = templatefile(...)` e tag `Name`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424389
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046980418
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047052316
+      }
+    ],
+    "2.4 Adicionar ao menos um comentário `# TODO: (produção)` em `main.tf`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424462
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047056935
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047061219
+      }
+    ],
+    "3. Checkpoint — verificar formatação e ausência de IAM": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424545
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047071941
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047083529
+      }
+    ],
+    "4.1 Declarar output `public_ip` com `value = aws_instance.moodle.public_ip` e `description` não vazia": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424624
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047088138
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047132424
+      }
+    ],
+    "4.2 Declarar output `public_dns` com `value = aws_instance.moodle.public_dns` e `description` não vazia": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424710
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047092214
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047132892
+      }
+    ],
+    "4.3 Adicionar ao menos um comentário `# TODO: (produção)` em `outputs.tf`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424786
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047136804
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047145549
+      }
+    ],
+    "5.1 Adicionar cabeçalho `#!/bin/bash`, `set -euo pipefail` e redirecionamento `exec >> /var/log/user-data.log 2>&1`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424850
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047150701
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047692066
+      }
+    ],
+    "5.2 Instalar Docker e Git via `dnf install -y docker git`; baixar binário do Docker Compose v2 do GitHub para `/usr/local/lib/docker/cli-plugins/docker-compose` via `curl -SL`, aplicar `chmod +x` e validar com `docker compose version`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424913
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047697443
+      }
+    ],
+    "5.3 Habilitar e iniciar o Docker com `systemctl enable docker && systemctl start docker`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046424967
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047698236
+      }
+    ],
+    "5.4 Criar 2 GB de swap: `fallocate -l 2G /swapfile`, `chmod 600 /swapfile`, `mkswap /swapfile`, `swapon /swapfile`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425019
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047699059
+      }
+    ],
+    "5.5 Clonar o repositório com `git clone --branch ${repo_branch} ${repo_url} /home/ec2-user/implement_Moodle`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425088
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047703918
+      }
+    ],
+    "5.6 Obter hostname via IMDSv2: primeiro `$${TOKEN}=$(curl -sX PUT .../latest/api/token -H 'X-aws-ec2-metadata-token-ttl-seconds: 60')` e depois `$${PUBLIC_HOSTNAME}=$(curl -sH \"X-aws-ec2-metadata-token: $${TOKEN}\" .../latest/meta-data/public-hostname)`; variáveis de shell devem usar escape `$${...}` pois o arquivo é processado pelo `templatefile()` do Terraform": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425205
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047708751
+      }
+    ],
+    "5.7 Gravar `/home/ec2-user/implement_Moodle/docker/.env` com as 10 variáveis substituídas pelo `templatefile()`: `MOODLE_DATABASE_HOST=${db_host}`, `MOODLE_DATABASE_PORT_NUMBER=${db_port}`, `MOODLE_DATABASE_NAME=${db_name}`, `MOODLE_DATABASE_USER=${db_user}`, `MOODLE_DATABASE_PASSWORD=${db_password}`, `MOODLE_USERNAME=${moodle_admin_user}`, `MOODLE_PASSWORD=${moodle_admin_password}`, `MOODLE_EMAIL=${moodle_admin_email}`, `MOODLE_SITE_NAME=${moodle_site_name}`, `MOODLE_WWWROOT=http://$${PUBLIC_HOSTNAME}`; aplicar `chmod 600` no arquivo": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425338
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047714104
+      }
+    ],
+    "5.8 Implementar loop de espera TCP no endpoint RDS: 24 tentativas × 5s usando `bash /dev/tcp/${db_host}/${db_port}`; se esgotar, registrar erro em `/var/log/user-data.log` e encerrar com `exit 1`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425434
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047718466
+      }
+    ],
+    "5.9 Executar `cd /home/ec2-user/implement_Moodle && docker compose -f docker/docker-compose.aws.yml up -d --build`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425639
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047727064
+      }
+    ],
+    "5.10 Adicionar ao menos um comentário `# TODO: (produção)` em `user_data.sh`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425732
+      },
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795103460395
+      }
+    ],
+    "6. Checkpoint final — confirmar propriedades P1–P7": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046425823
+      }
+    ],
+    "1. Criar `variables.tf` com todas as variáveis de entrada do módulo": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795046610192
+      }
+    ],
+    "2. Criar `main.tf` com data source AMI, locals e recurso `aws_instance`": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047061361
+      }
+    ],
+    "4. Criar `outputs.tf` com os outputs obrigatórios": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795047145726
+      }
+    ],
+    "5. Criar `user_data.sh` com bootstrap do Docker e Moodle": [
+      {
+        "executionId": "b684cbdc-6f2d-4cc5-849a-3ae7a856e048",
+        "chatSessionId": "sess_ba4bee78-0dfe-4853-bf0c-ccc639abaa30",
+        "timestamp": 1795103460488
+      }
+    ]
+  }
+}

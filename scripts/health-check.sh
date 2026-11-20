@@ -16,8 +16,9 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color (reset)
 
-MAX_RETRIES=3
-RETRY_DELAY=30
+# Configuráveis por variável de ambiente (ex.: MAX_RETRIES=10 na EC2, onde o boot é mais lento)
+MAX_RETRIES="${MAX_RETRIES:-3}"
+RETRY_DELAY="${RETRY_DELAY:-30}"
 EXIT_CODE=0
 
 # Rastreia qual verificação falhou (para diagnóstico)

@@ -1,0 +1,31 @@
+# =============================================================================
+# Docker Compose — Moodle na EC2 (AWS), usando o RDS PostgreSQL externo
+# =============================================================================
+# Diferenças em relação ao docker-compose.yml local:
+#   - sem serviço db (o banco é o RDS, informado em MOODLE_DATABASE_HOST);
+#   - porta 80:80 (acesso direto pelo DNS público da EC2);
+#   - lê o docker/.env gravado pelo user_data.sh no primeiro boot.
+# Uso (feito automaticamente pelo user_data.sh):
+#   docker compose -f docker/docker-compose.aws.yml up -d --build
+# TODO: Em produção, usar uma imagem pré-construída (ECR) em vez de build na EC2,
+#       e colocar um ALB com HTTPS na frente.
+# =============================================================================
+
+services:
+  moodle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    # Todas as variáveis MOODLE_* (banco RDS, admin, wwwroot) vêm do .env
+    env_file:
+      - .env
+    volumes:
+      - moodle_www:/var/www/html
+      - moodle_data:/var/moodledata
+
+volumes:
+  moodle_www:
+  moodle_data:

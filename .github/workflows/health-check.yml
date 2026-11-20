@@ -6,9 +6,8 @@ on:
       moodle_url:
         # TODO: Após o deploy na AWS, substitua o valor padrão pelo DNS público da sua instância EC2
         #       (ex: http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com)
-        description: "URL do Moodle a verificar (ex: http://<EC2_DNS>)"
+        description: "URL do Moodle a verificar (ex: http://<EC2_DNS>) — o runner do GitHub não alcança localhost"
         required: true
-        default: "http://localhost:8080"
 
 jobs:
   health-check:
@@ -24,5 +23,10 @@ jobs:
         run: chmod +x scripts/health-check.sh
 
       # Executa o health check apontando para a URL informada via input do workflow
+      # MAX_RETRIES/RETRY_DELAY ampliam a espera (~5 min) para cobrir o boot da EC2 + RDS
       - name: Executar health check na URL fornecida
-        run: scripts/health-check.sh "${{ github.event.inputs.moodle_url }}"
+        env:
+          MAX_RETRIES: "10"
+          RETRY_DELAY: "30"
+          MOODLE_URL: ${{ github.event.inputs.moodle_url }}
+        run: scripts/health-check.sh "$MOODLE_URL"

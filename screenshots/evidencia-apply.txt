@@ -1,0 +1,68 @@
+# Evidência do terraform apply — 2026-11-20 (Learner Lab, us-east-1)
+# Gerado após o apply; a infraestrutura foi destruída em seguida (terraform destroy).
+
+## terraform output (sem valores sensíveis)
+ec2_public_dns = "ec2-18-232-141-223.compute-1.amazonaws.com"
+ec2_public_ip = "18.232.141.223"
+moodle_url = "http://ec2-18-232-141-223.compute-1.amazonaws.com"
+rds_endpoint = "moodle-db.czyksm8w4iud.us-east-1.rds.amazonaws.com:5432"
+vpc_id = "vpc-0adf62a32a2d17b28"
+
+## health-check.sh
+[…] Tentativa 1/2 — verificando http://ec2-18-232-141-223.compute-1.amazonaws.com …
+[✓] Moodle está respondendo em http://ec2-18-232-141-223.compute-1.amazonaws.com
+exit=0
+
+## RDS (aws rds describe-db-instances)
+---------------------------------------
+|         DescribeDBInstances         |
++---------------------+---------------+
+|  Class              |  db.t3.micro  |
+|  Engine             |  postgres     |
+|  Id                 |  moodle-db    |
+|  MultiAZ            |  False        |
+|  PubliclyAccessible |  False        |
+|  Status             |  available    |
+|  StorageGB          |  20           |
+|  StorageType        |  gp2          |
+|  Version            |  15.17        |
++---------------------+---------------+
+
+## EC2 (aws ec2 describe-instances)
+--------------------------------------------------------------------------------
+|                               DescribeInstances                              |
++-----------+------------------------------------------------------------------+
+|  AZ       |  us-east-1a                                                      |
+|  Id       |  i-0ca250c801b3b60d3                                             |
+|  Profile  |  arn:aws:iam::<ACCOUNT>:instance-profile/LabInstanceProfile   |
+|  PublicDNS|  ec2-18-232-141-223.compute-1.amazonaws.com                      |
+|  State    |  running                                                         |
+|  Type     |  t3.micro                                                        |
++-----------+------------------------------------------------------------------+
+
+## Security group do RDS (sg-db): origem da regra 5432
+[
+    {
+        "Porta": 5432,
+        "CIDRs": [],
+        "OrigemSG": [
+            "sg-0d1083b2b1aa687fd"
+        ]
+    }
+]
+
+## Security group da EC2 (sg-app): portas de entrada
+[
+    {
+        "Porta": 80,
+        "Origem": [
+            "0.0.0.0/0"
+        ]
+    },
+    {
+        "Porta": 22,
+        "Origem": [
+            "<IP-DO-OPERADOR>/32"
+        ]
+    }
+]
