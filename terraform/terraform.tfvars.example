@@ -1,0 +1,16 @@
+# Copie para terraform.tfvars (ignorado pelo Git) e preencha. NUNCA commite o .tfvars real.
+#   cp terraform.tfvars.example terraform.tfvars
+
+# Seu IP público com /32 (descubra com: curl -s https://checkip.amazonaws.com)
+ssh_allowed_cidr = "SEU.IP.PUBLICO.AQUI/32"
+
+# RDS: somente letras e números, mínimo 8 caracteres
+db_password = "TroqueEstaSenha123"
+
+# Moodle: mínimo 8, com maiúscula, minúscula, número e um símbolo entre @ ! - _ %
+moodle_admin_password = "Troque@Esta123"
+moodle_admin_email    = "voce@example.com"
+
+# Opcionais (valores padrão em variables.tf):
+# repo_url    = "https://github.com/SEU-USUARIO/implement_Moodle.git"
+# repo_branch = "feature/terraform-aws"
