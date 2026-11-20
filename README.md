@@ -1,6 +1,6 @@
 # Moodle Docker AWS Challenge
 
-Este repositório é um **template educacional** para um desafio que combina containerização com Docker, infraestrutura como código com Terraform e deploy na nuvem AWS usando o ambiente AWS Learn Lab. O template entrega um ambiente Docker local de referência rodando Moodle 4.x com PostgreSQL 15, além do scaffolding de arquivos, documentação, pipelines de CI/CD e scripts de validação. Os módulos Terraform funcionais e o desenho técnico de arquitetura são **entregas obrigatórias do aluno**.
+Este repositório contém a **solução** do desafio: o Moodle 4.1 rodando em contêineres (Docker) e implantado na AWS (Learner Lab) por infraestrutura como código (Terraform), com pipelines de CI no GitHub Actions. O ambiente Docker local, os módulos Terraform (`networking`, `database`, `compute`), o workflow `terraform-plan.yml` e o desenho técnico ([`docs/architecture-design.md`](docs/architecture-design.md)) estão implementados e validados. O ponto de partida foi um template educacional da disciplina de DevOps (UniFAAT), cujos erros propositais foram corrigidos.
 
 → **[Leia o desafio completo](CHALLENGE.md)**
 
