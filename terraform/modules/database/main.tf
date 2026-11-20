@@ -7,10 +7,11 @@
 # Subnet group: RDS exige ao menos 2 subnets em AZs diferentes
 # As subnets privadas são fornecidas pelo módulo networking
 # ------------------------------------------------------------------
+# ATENCAO: a descricao do DB Subnet Group aceita apenas caracteres ASCII (sem acentos nem simbolos como >=).
 resource "aws_db_subnet_group" "this" {
   name        = "${var.identifier}-subnet-group"
   subnet_ids  = var.private_subnet_ids
-  description = "Subnet group privado para a instância RDS do Moodle (≥2 AZs)"
+  description = "Subnet group privado para a instancia RDS do Moodle (2 AZs)"
 
   tags = merge(var.tags, {
     Name = "${var.identifier}-subnet-group"
